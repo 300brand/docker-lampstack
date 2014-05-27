@@ -58,13 +58,14 @@ EXPOSE     3306
 #          APACHE CONFIGURATION
 ADD        apache.conf /etc/supervisor/conf.d/apache.conf
 ADD        dev.conf /etc/apache2/sites-available/dev.conf
+ADD        50-dev.conf /etc/php5/apache2/conf.d/50-dev.conf
 RUN        touch /etc/apache2/mods-available/php5_fix.load
 ADD        php5_fix.conf /etc/apache2/mods-available/php5_fix.conf
-RUN        a2enmod vhost_alias
+RUN        a2enmod php5_fix
 RUN        a2enmod rewrite
+RUN        a2enmod vhost_alias
 RUN        a2ensite dev
 RUN        a2dissite 000-default
-RUN        a2enmod php5_fix
 RUN        mkdir -m 0777 /www
 VOLUME     ['/www']
 EXPOSE     80

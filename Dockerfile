@@ -1,7 +1,7 @@
 FROM       ubuntu:latest
 MAINTAINER jtews@300brand.com
 
-# RUN        echo 'Acquire::http { Proxy "http://192.168.20.21:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+RUN        echo 'Acquire::http { Proxy "http://192.168.20.21:3142"; };' >> /etc/apt/apt.conf.d/01proxy
 RUN        sed 's/main$/main universe/' -i /etc/apt/sources.list
 
 # NOTE     To cause an update (and upgrade), change the date below to today
@@ -58,9 +58,9 @@ EXPOSE     3306
 #          APACHE CONFIGURATION
 ADD        apache.conf /etc/supervisor/conf.d/apache.conf
 ADD        dev.conf /etc/apache2/sites-available/dev.conf
-ADD        50-dev.conf /etc/php5/apache2/conf.d/50-dev.conf
+ADD        50-dev.ini /etc/php5/apache2/conf.d/50-dev.ini
 RUN        touch /etc/apache2/mods-available/php5_fix.load
-ADD        php5_fix.ini /etc/apache2/mods-available/php5_fix.ini
+ADD        php5_fix.conf /etc/apache2/mods-available/php5_fix.conf
 RUN        a2enmod php5_fix
 RUN        a2enmod rewrite
 RUN        a2enmod vhost_alias

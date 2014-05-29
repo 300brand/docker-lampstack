@@ -1,7 +1,7 @@
 FROM       ubuntu:latest
 MAINTAINER jtews@300brand.com
 
-# RUN        echo 'Acquire::http { Proxy "http://192.168.20.21:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+RUN        ping -c1 -w1 192.168.20.21 && echo 'Acquire::http { Proxy "http://192.168.20.21:3142"; };' >> /etc/apt/apt.conf.d/01proxy
 RUN        sed 's/main$/main universe/' -i /etc/apt/sources.list
 
 # NOTE     To cause an update (and upgrade), change the date below to today

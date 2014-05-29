@@ -34,6 +34,7 @@ EXPOSE     9001
 #          DNSMASQ CONFIGURATION
 ADD        dnsmasq.conf /etc/supervisor/conf.d/dnsmasq.conf
 ENV        TLD dev
+ENV        IP 127.0.0.1
 EXPOSE     53
 
 #          SSH CONFIGURATION

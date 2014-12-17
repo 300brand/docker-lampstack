@@ -17,6 +17,7 @@ RUN        apt-get -y install \
                php5 \
                php5-curl \
                php5-gd \
+               php5-mcrypt \
                php5-mongo \
                php5-mysqlnd \
                php5-sqlite \
